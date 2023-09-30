@@ -5,28 +5,24 @@ import java.util.UUID;
 
 import co.edu.uco.tiendaonline.data.entity.ClienteEntity;
 
-public class ClienteDAO {
+public interface ClienteDAO {
 	
 		
-		void crear ( ClienteEntity entity) {
-		}
-		void  modificar ( ClienteEntity entity) {
-		}
-		void eliminar( UUID id) {
-		}
+		void crear ( ClienteEntity entity);
+		
+		void  modificar ( ClienteEntity entity);
 		
 		
-		Optional<ClienteEntity>consultarPorId(UUID id) {
-			return null;
-		}
+		void eliminar( UUID id);
 		
-		List<ClienteEntity> consultar(ClienteEntity entity) {
-			return null;
-		}
+		
+		Optional<ClienteEntity>consultarPorId(UUID id);
+		
+		List<ClienteEntity> consultar(ClienteEntity entity);
 		
 		
 
 	}
 
 
-}
+

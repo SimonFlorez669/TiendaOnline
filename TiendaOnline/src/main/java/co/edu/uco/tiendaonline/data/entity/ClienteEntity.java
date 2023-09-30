@@ -6,7 +6,7 @@ import java.util.UUID;
 public class ClienteEntity {
 	
 	private UUID  id;
-	private TipoIdentificacion tipoidentificacion;
+	private TipoIdentificacionEntity tipoidentificacion;
 	private NombreCompletoClienteEntity nombreCompleto;
 	private CorreoElectronicoClienteEntity correoelectronico;
 	private NumeroTelefonoMovilClienteEntity numeroCompleto;
@@ -14,7 +14,7 @@ public class ClienteEntity {
 	
 	
 	
-	private ClienteEntity(final UUID id,final TipoIdentificacion tipoidentificacion,
+	private ClienteEntity(final UUID id,final TipoIdentificacionEntity tipoidentificacion,
 			final CorreoElectronicoClienteEntity correoElectronico,final Date fechaNacimiento,final NumeroTelefonoMovilClienteEntity numeroCompleto,final NombreCompletoClienteEntity nombreCompleto) {
 		super();
 	
@@ -27,7 +27,7 @@ public class ClienteEntity {
 		
 	}
 	
-	public static final ClienteEntity crear(final UUID id,final TipoIdentificacion tipoidentificacion,
+	public static final ClienteEntity crear(final UUID id,final TipoIdentificacionEntity tipoidentificacion,
 			final CorreoElectronicoClienteEntity correoelectronico,final NumeroTelefonoMovilClienteEntity numeroCompleto,final NombreCompletoClienteEntity nombreCompleto,
 			final Date fechaNacimiento) {
 		return new ClienteEntity(id,tipoidentificacion,correoelectronico,fechaNacimiento, numeroCompleto,nombreCompleto);
@@ -41,7 +41,7 @@ public class ClienteEntity {
 
 
 
-	private final void setTipoidentificacion(TipoIdentificacion tipoidentificacion) {
+	private final void setTipoidentificacion(TipoIdentificacionEntity tipoidentificacion) {
 		this.tipoidentificacion = tipoidentificacion;
 	}
 	
@@ -75,7 +75,7 @@ public class ClienteEntity {
 
 
 
-	public final TipoIdentificacion getTipoidentificacion() {
+	public final TipoIdentificacionEntity getTipoidentificacion() {
 		return tipoidentificacion;
 	}
 

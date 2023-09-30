@@ -2,7 +2,7 @@ package co.edu.uco.tiendaonline.data.entity;
 
 import java.util.UUID;
 
-public final class TipoIdentificacion {
+public final class TipoIdentificacionEntity {
 	
 	private UUID id;
 	private String nombre;
@@ -11,7 +11,7 @@ public final class TipoIdentificacion {
 	
 	
 	
-	private TipoIdentificacion(final UUID id, String nombre, String codigo, boolean estado) {
+	private TipoIdentificacionEntity(final UUID id, String nombre, String codigo, boolean estado) {
 		setId(id);
 		setCodigo(codigo);
 		setNombre(nombre);
@@ -19,9 +19,9 @@ public final class TipoIdentificacion {
 		
 	}
 	
-	public static final TipoIdentificacion crear(final UUID id,final String nombre,final String codigo,final boolean estado){
+	public static final TipoIdentificacionEntity crear(final UUID id,final String nombre,final String codigo,final boolean estado){
 		
-		return new TipoIdentificacion(id, nombre, codigo, estado);
+		return new TipoIdentificacionEntity(id, nombre, codigo, estado);
 	}
 
 
