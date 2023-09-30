@@ -1,5 +1,9 @@
 package co.edu.uco.tiendaonline.crosscutting.exception.concrete;
 
-public class ServiceTiendaOnlineException {
+import co.edu.uco.tiendaonline.crosscutting.exception.TiendaOnlineException;
+
+public class ServiceTiendaOnlineException extends TiendaOnlineException{
+	
+	private static final long serialVersionUID = 1L;
 
 }
