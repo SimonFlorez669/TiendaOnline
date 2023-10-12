@@ -1,6 +1,7 @@
 package co.edu.uco.tiendaonline.crosscutting.exception.messages;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.CrossCuttingTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.enumerator.CategoriaMensaje;
