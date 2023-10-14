@@ -29,7 +29,7 @@ public class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M000004, TipoMensaje.USUARIO, CategoriaMensaje.FATAL , "se ha presentado un problema inesperada tratando de llevar a cabo la operacion deseada. Intente de nuevo y si el problema persiste contacte al administrador de la aplicacion. "));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M000005, TipoMensaje.TECNICO, CategoriaMensaje.ERROR , "se ha presentado un problema inesperada tratando de validar si la conexion SQL esta abierta. Se presento una exepcion SQLExeption, por favor verifique la traza completa del error presentado, para asi poder diagnsosticar. "));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M000006, TipoMensaje.TECNICO, CategoriaMensaje.ERROR , "se ha presentado un problema inesperada tratando de validar si la conexion SQL esta abierta. Se presento una exepcion generica de tipo Exception . por favor verifique la traza completa del error presentado, para asi poder diagnsosticar. "));
-
+agregarMensaje(Mensaje.crear(null, null, null, null));
 	}
 	
 	private static final void agregarMensaje (final Mensaje mensaje) {

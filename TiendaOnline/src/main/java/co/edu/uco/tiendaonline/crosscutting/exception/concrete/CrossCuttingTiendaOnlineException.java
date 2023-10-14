@@ -1,4 +1,4 @@
-package co.edu.uco.tiendaonline.crosscutting.exception.concrete;
+ package co.edu.uco.tiendaonline.crosscutting.exception.concrete;
 
 import co.edu.uco.tiendaonline.crosscutting.exception.TiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.exception.enumerator.LugarException;
