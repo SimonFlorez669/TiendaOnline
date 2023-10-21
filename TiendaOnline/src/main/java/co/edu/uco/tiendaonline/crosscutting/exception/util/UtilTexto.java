@@ -3,6 +3,8 @@ package co.edu.uco.tiendaonline.crosscutting.exception.util;
 public final class UtilTexto {
 	
 	public static final String VACIO= "";
+	private static final String PATTERN_SOLO_LETRAS = "[A-Za-záéíóú ]+$";
+	private static final String PATTERN_SOLO_LETRAS_DIGITOS_ESPACIOS ="[0-9A-Za-záéíóú ]+$";
 
 	
 	private UtilTexto() {
@@ -64,7 +66,35 @@ public final class UtilTexto {
 	public static final boolean estaVacio(final String valor) {
 		return igualConTrim(valor, VACIO);
 		
+	}
+	
+	
+	public static final boolean longitudMinimaValida(final String valor,  final int longitud) {
 		
+		return aplicarTrim(valor).length() >= longitud;
+		
+	}
+	
+	
+	
+	public static final boolean longitudMaximaValida(final String valor, final int longitud) {
+		
+		return aplicarTrim(valor).length() <= longitud;
+		
+	}
+	
+	
+	
+	
+	
+	public static final boolean longitudValida(final String valor, final int longitudMinima, final int longitudMaxima) {
+		
+		return longitudMinimaValida(valor, longitudMaxima) && longitudMaximaValida(valor, longitudMaxima);
+	}
+	
+	public static final boolean contieneSoloLetras(final String valor) {
+		
+		return obtenerValorDefecto(valor).matches(PATTERN_SOLO_LETRAS);
 	}
 
 	

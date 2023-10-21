@@ -3,12 +3,14 @@ package co.edu.uco.tiendaonline.service.domain;
 import java.sql.Date;
 import java.util.UUID;
 
+import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacion;
+
 
 
 public class ClienteDomain {
 	
 	private UUID  id;
-	private TipoIdentificacionDomain tipoidentificacion;
+	private TipoIdentificacion tipoidentificacion;
 	private NombreCompletoClienteDomain nombreCompleto;
 	private CorreoElectronicoClienteDomain correoelectronico;
 	private NumeroTelefonoMovilClienteDomain numeroCompleto;
