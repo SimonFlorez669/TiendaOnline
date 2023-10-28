@@ -1,6 +1,6 @@
 package co.edu.uco.tiendaonline.service.domain;
 
-	import java.util.UUID;
+import java.util.UUID;
 
 public class TipoIdentificacionDomain {
 
@@ -85,4 +85,4 @@ public class TipoIdentificacionDomain {
 
 	}
 
-}
+

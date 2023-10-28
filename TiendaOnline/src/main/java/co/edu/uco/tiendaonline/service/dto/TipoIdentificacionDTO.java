@@ -2,7 +2,9 @@ package co.edu.uco.tiendaonline.service.dto;
 
 import java.util.UUID;
 
+import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilObjeto;
 import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilUUID;
 
 public final class TipoIdentificacionDTO {
 
@@ -15,7 +17,7 @@ public final class TipoIdentificacionDTO {
 	
 	
 	public TipoIdentificacionDTO() {
-		setId(id);   // TODO: ¿Como lograr que por defecto se asigne un UUID que sea todo con 0?
+		setId(UtilUUID.DEFAULT_UUID);    
 		setCodigo(UtilTexto.VACIO); 
 		setNombre(UtilTexto.VACIO);
 		setEstado(false);
@@ -57,14 +59,14 @@ public final class TipoIdentificacionDTO {
 	
 	
 	public final TipoIdentificacionDTO setId(final UUID id) {
-		this.id = id;
+		this.id = UtilObjeto.obtenerValorDefecto(id, UtilUUID.DEFAULT_UUID);
 		return this;
 	}
 	
 	
 	
 	public final TipoIdentificacionDTO setNombre(final String nombre) {
-		this.nombre = nombre;
+		this.nombre = UtilTexto.aplicarTrim(nombre);
 		return this;
 	}
 	
@@ -74,7 +76,7 @@ public final class TipoIdentificacionDTO {
 	
 	
 	public final TipoIdentificacionDTO setCodigo(final String codigo) {
-		this.codigo = codigo;
+		this.codigo = UtilTexto.aplicarTrim(codigo);
 		return this;
 	}
 	

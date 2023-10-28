@@ -7,7 +7,7 @@ public enum CodigoMensaje {
 	M000003,
 	M000004,
 	M000005,
-	M000006
+	M000006, 
 	
 	
 }

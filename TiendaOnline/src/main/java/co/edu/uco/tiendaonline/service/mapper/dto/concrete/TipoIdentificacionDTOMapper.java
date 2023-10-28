@@ -1,5 +1,6 @@
 package co.edu.uco.tiendaonline.service.mapper.dto.concrete;
 
+import co.edu.uco.tiendaonline.service.domain.TipoIdentificacionDomain;
 import co.edu.uco.tiendaonline.service.dto.TipoIdentificacionDTO;
 import co.edu.uco.tiendaonline.service.mapper.dto.DTOMapper;
 
@@ -7,10 +8,11 @@ public class TipoIdentificacionDTOMapper implements DTOMapper<TipoIdentificacion
 
 	
 	private static final DTOMapper<TipoIdentificacionDTO, TipoIdentificacionDomain> instancia = new DTOMapper<TipoIdentificacionDTOMapper, TipoIdentificacioDomain>() {
+	
+	}
 		
 		
-		
-	};
+	
 	
 	
 	
