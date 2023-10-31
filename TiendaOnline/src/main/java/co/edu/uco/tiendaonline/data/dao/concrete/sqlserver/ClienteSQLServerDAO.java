@@ -10,7 +10,7 @@ import co.edu.uco.tiendaonline.data.entity.ClienteEntity;
 
 public final class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO{
 
-	protected ClienteSQLServerDAO(Connection conexion) {
+	public ClienteSQLServerDAO(Connection conexion) {
 		super(conexion);
 		// TODO Auto-generated constructor stub
 	}

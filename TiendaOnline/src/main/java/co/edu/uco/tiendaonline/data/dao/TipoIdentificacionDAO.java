@@ -10,9 +10,13 @@ public interface TipoIdentificacionDAO {
 	
 	
 	void crear (TipoIdentificacionEntity entity);
+	
 	void modificar(TipoIdentificacionEntity entity);
 	void eliminar (UUID id);
+	
 	Optional <TipoIdentificacionEntity> consultarPorId(UUID id);
+	
+	
 	List<TipoIdentificacionEntity> consultar(TipoIdentificacionEntity entity);
 
 	

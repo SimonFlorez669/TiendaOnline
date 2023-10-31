@@ -11,263 +11,256 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import co.edu.uco.tiendaonline.crosscutting.exception.concrete.CrossCuttingTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.CatalogoMensajes;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.enumerator.CodigoMensaje;
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilObjeto;
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilUUID;
 import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
 
 public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements TipoIdentificacionDAO{
 
-	protected TipoIdentificacionSQLServerDAO(Connection conexion) {
+	public TipoIdentificacionSQLServerDAO(final Connection conexion) {
 		super(conexion);
-		// TODO Auto-generated constructor stub
+
+		
 	}
 
 	@Override
-	public void crear(TipoIdentificacionEntity entity) {
+	public final void crear(final TipoIdentificacionEntity entity) {
 		final var sentencia = new StringBuilder();
 		
-		sentencia.append("INSERT INTO TipoIdentificacion(id,codigo, nombre,estado) ");
-		sentencia.append("VALUES (?, ?, ?, ?)");
+		sentencia.append("INSERT INTO TipoIdentificacion (id,codigo,nombre,estado) ");
+		sentencia.append("VALUES(?,?,?,?)");
 		
-		
-		try (final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString())) {
+		try(final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString()) ) {
+			
 			sentenciaPreparada.setObject(1, entity.getId());
 			sentenciaPreparada.setString(2, entity.getCodigo());
 			sentenciaPreparada.setString(3, entity.getNombre());
 			sentenciaPreparada.setBoolean(4, entity.isEstado());
 			
-			
 			sentenciaPreparada.executeUpdate();
-			
-			
-		} catch (final SQLException excepcion) {
-			var mensajeUsuario= " Se a presentado un problema tratando de registrar la informacion del nuevo Tipo de identificacion";
-			var mensajeTecnico ="Se ha presentado un problema de SQL execepcion en el metodo crear de la class TipoIdentificacion la traza completa del problema presentado para asi poder identificar que sucedio ";
-			throw DataTiendaOnlineException.crear(mensajeTecnico, mensajeUsuario);
-		} catch (final Exception excepcion) {
-			var mensajeUsuario= " Se a presentado un problema tratando de registrar la informacion del nuevo Tipo de identificacion";
-			var mensajeTecnico ="Se ha presentado un problema inesperado de tipo execepcion en el metodo crear de la class TipoIdentificacion la traza completa del problema presentado para asi poder identificar que sucedio ";
-			throw DataTiendaOnlineException.crear(mensajeTecnico, mensajeUsuario);
-			
+		}
+		catch(final SQLException excepcion){
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000037);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000041);
+			throw DataTiendaOnlineException.crear(excepcion, mensajeUsuario,mensajeTecnico);
+		}catch(final Exception excepcion){
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000037);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000042);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
-	public void modificar(TipoIdentificacionEntity entity) {
-		// TODO Auto-generated method stub
-		
-		
-		
+	public final void modificar(final TipoIdentificacionEntity entity) {
+		final var sentencia = new StringBuilder();
+	    
+	    sentencia.append("UPDATE TipoIdentificacion ");
+	    sentencia.append ("SET codigo = ?, nombre = ?, estado = ? ");
+	    sentencia.append ("WHERE id = ?");
+	    
+	    try(final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString()) ) {
+	        
+	        sentenciaPreparada.setString(1, entity.getCodigo());
+	        sentenciaPreparada.setString(2, entity.getNombre());
+	        sentenciaPreparada.setBoolean(3, entity.isEstado());
+	        sentenciaPreparada.setObject(4, entity.getId());
+	        
+	        sentenciaPreparada.executeUpdate();
+	    }
+	    catch(final SQLException excepcion){
+	        var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000038);
+	        var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000043);
+	        throw DataTiendaOnlineException.crear(excepcion, mensajeUsuario, mensajeTecnico);
+	    } catch (final Exception excepcion) {
+	        var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000038);
+	        var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000044);
+	        throw DataTiendaOnlineException.crear(excepcion, mensajeUsuario, mensajeTecnico);
+	    }
+
 	}
 
 	@Override
-	public void eliminar(UUID id) {
-		// TODO Auto-generated method stub
-		
-		
+	public final void eliminar(final UUID id) {
+		final var sentencia = new StringBuilder();
+	    sentencia.append("DELETE FROM TipoIdentificacion ");
+	    sentencia.append ("WHERE id = ?");
+	    
+	    try(final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString()) ) {
+	        sentenciaPreparada.setObject(1, id);
+	        sentenciaPreparada.executeUpdate();
+	    } catch (final SQLException excepcion) {
+	        var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000039);
+	        var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000045);
+	        throw DataTiendaOnlineException.crear(excepcion, mensajeUsuario, mensajeTecnico);
+	    } catch (final Exception excepcion) {
+	        var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000039);
+	        var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000046);
+	        throw DataTiendaOnlineException.crear(excepcion, mensajeUsuario, mensajeTecnico);
+	    }
+
 	}
 
 	@Override
-	public Optional<TipoIdentificacionEntity> consultarPorId(UUID id) {
-           final var sentencia = new StringBuilder();
-		
-		sentencia.append("SELECT id,codigo, nombre,estado) ");
-		sentencia.append("FROM TipoIdentificacion");
-		sentencia.append(" WHERE id = ?");
-		
+	public final Optional<TipoIdentificacionEntity> consultarPorId(final UUID id) {
+		final var sentencia = new StringBuilder();
+		sentencia.append("SELECT id,codigo,nombre,estado ");
+		sentencia.append("FROM TipoIdentificacion ");
+		sentencia.append("WHERE id= ?");
 		
 		Optional<TipoIdentificacionEntity> resultado = Optional.empty();
 		
 		try(final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString())){
 			
 			sentenciaPreparada.setObject(1, id);
+			
 			resultado = ejecutarConsultaPorId(sentenciaPreparada);
 			
-			try(final var resultados = sentenciaPreparada.executeQuery()){
-				
-				if(resultados.next()) {
-					var TipoIdentifiacionEntity = TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("id").toString()),resultados.getString("codigo"), resultados.getString("nombre"), resultados.getBoolean("estado"));
-					
-					resultado = Optional.of(TipoIdentifiacionEntity);
-					
-					
-				}
-			}catch (final SQLException excepcion) {
-				var mensajeUsuario= " Se a presentado un problema tratando de consultar la informacion de tipo de identificacion por el identificador deseadp";
-				var mensajeTecnico ="Se ha presentado un problema de tipo SQL execepcion en el metodo ";
-				throw DataTiendaOnlineException.crear(excepcion,mensajeTecnico, mensajeUsuario);
-				
-				
-			}catch (final DataTiendaOnlineException excepcion) {
-				throw excepcion;
-				
-			}
-			
-		}catch (SQLException excepcion) {
-			var mensajeUsuario= " Se a presentado un problema tratando de consultar la informacion de tipo de identificacion por el identificador deseadp";
-			var mensajeTecnico ="Se ha presentado un problema de tipo SQL execepcion en el metodo consultar por ide en la clae TipoIdentifiacaionSQLServer tratandop de preparar la sentencia SQL de la consulta de tipp identificacion deseada ";
-			throw DataTiendaOnlineException.crear(mensajeTecnico, mensajeUsuario);
-			
-			
-
-			
-			
-		}catch (final Exception excepcion) {
-			var mensajeUsuario= " Se a presentado un problema tratando de consultar la informacion de tipo de identificacion por el identificador deseadp";
-			var mensajeTecnico ="Se ha presentado un problema de tipo exception en el metodo consultar por ide en la clae TipoIdentifiacaionSQLServer tratandop de preparar la sentencia SQL de la consulta de tipp identificacion deseada ";
-			throw DataTiendaOnlineException.crear(excepcion,mensajeTecnico, mensajeUsuario);
+		}catch(final DataTiendaOnlineException excepcion) {
+			throw excepcion;
+		}
+		catch(final SQLException excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000047);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
+		}
+		catch(final Exception excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000048);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
 			
 		}
-		
-		
-		
+
 		return resultado;
 	}
 
-	@Override
-	public List<TipoIdentificacionEntity> consultar(TipoIdentificacionEntity entity) {
-		
-		final var parametros = new ArrayList<Object>();
-		
-		
-		final String sentencia = formarSentenciaConsulta(entity, parametros);
-		
-		return null;
-		
-		
-		
-		
-		
-		
-	
- 
+	private Optional<TipoIdentificacionEntity> ejecutarConsultaPorId(final PreparedStatement sentenciaPreparada){
+		Optional<TipoIdentificacionEntity> resultado = Optional.empty();
+		try(final var resultados = sentenciaPreparada.executeQuery()){
+			if(resultados.next()) {
+				var tipoIdentificacionEntity = 
+						TipoIdentificacionEntity.crear(UtilUUID.convertirStringaUUID(resultados.getObject("id").toString()), resultados.getString("codigo"),resultados.getString("nombre"), resultados.getBoolean("estado"));
+				
+				resultado= Optional.of(tipoIdentificacionEntity);
+			}
+		}catch( final SQLException excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000049);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
+		}
+		catch( final Exception excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000050);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
+		}
+		return resultado;
 	}
 	
-	private final String formarSentenciaConsulta(final TipoIdentificacionEntity entity, final List<Object> parametros) {
-		
+	private final String formarSentenciaConsulta(final TipoIdentificacionEntity entity , final List <Object> parametros) {
 		final StringBuilder sentencia = new StringBuilder();
-		String  operadorCondicional = "WHERE";
+		String operadorCondicional ="WHERE";
 		
-		
-		sentencia.append(" SELECT id, codigo, nombre , estado ");
+		sentencia.append("SELECT id, codigo, nombre, estado ");
 		sentencia.append("FROM TipoIdentificacion ");
-		
 		if(!UtilObjeto.esNulo(entity)) {
-			if(UtilObjeto.esNulo(entity.getId())) {
-				sentencia.append(operadorCondicional).append(" id = ?");
+			
+			if(!UtilObjeto.esNulo(entity.getId())) {
+				sentencia.append(operadorCondicional).append(" id = ? ");
 				operadorCondicional = "AND";
 				parametros.add(entity.getId());
-				
-				
 			}
-			
 			if(!UtilTexto.estaVacio(entity.getCodigo())) {
-				sentencia.append(operadorCondicional).append(" codigo = ?");
+				sentencia.append(operadorCondicional).append(" codigo = ? ");
 				operadorCondicional = "AND";
 				parametros.add(entity.getCodigo());
-				
 			}
-			if(!UtilTexto.estaVacio(entity.getCodigo())) {
-				sentencia.append(operadorCondicional).append(" nombre = ?");
+			if(!UtilTexto.estaVacio(entity.getNombre())) {
+				sentencia.append(operadorCondicional).append(" nombre = ? ");
 				operadorCondicional = "AND";
 				parametros.add(entity.getNombre());
-			
-	
-		}
-			if(!UtilObjeto.esNulo(entity.isEstado())){
-				sentencia.append(operadorCondicional).append(" estado = ?");
+			}
+			if(!UtilObjeto.esNulo(entity.isEstado())) {
+				sentencia.append(operadorCondicional).append(" estado = ? ");
 				parametros.add(entity.isEstado());
 			}
-	}
-		sentencia.append(" ORDER BY codigo ASC ");
+		}
+		sentencia.append("ORDER BY codigo ASC ");
+		
 		return sentencia.toString();
-		
 	}
-	
-	private final List<TipoIdentificacionEntity> prepararEjecutarSentenciaConsulta(final TipoIdentificacionEntity entity) {
-		
+	 @Override
+	public final List<TipoIdentificacionEntity> consultar (final TipoIdentificacionEntity entity) {
 		
 		final var parametros = new ArrayList<Object>();
-		final String sentencia = formarSentenciaConsulta(entity, parametros);
+		final String sentencia = formarSentenciaConsulta(entity,parametros); 
 		
 		try (final var sentenciaPreparada = getConexion().prepareStatement(sentencia)){
 			
-			colocarParametrosConsulta(sentenciaPreparada, parametros);
-			return ejecutarConsulta( sentenciaPreparada);
-			
- 
-			
-		}catch (final DataTiendaOnlineException excepcion){
-		
+			colocarParametrosConsulta(sentenciaPreparada, parametros );
+			 return ejecutarConsulta(sentenciaPreparada);
+			 
+		}catch(final DataTiendaOnlineException excepcion) {
 			throw excepcion;
+		}
+		catch (final SQLException excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000051);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
+		}
+		catch (final Exception excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000052);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
+		}
+		
+		
+	}
+	
+	private final void colocarParametrosConsulta(final PreparedStatement sentenciaPreparada, final List<Object> parametros ) {
+		try {
+			for (int indice = 0; indice < parametros.size(); indice++) {
+				sentenciaPreparada.setObject(indice + 1 , parametros.get(indice));
+			}
 			
 		}catch(final SQLException excepcion) {
-			var mensajeUsuario= " Se a presentado un problema tratando de llevar a cabo la consulta de los Tipos de indentificacion";
-			var mensajeTecnico ="Se ha presentado un problema en el metodo consultar parametros consulta en la clase tipo identificacion sql server dao, tratando de preparar la sentencia sql. ";
-			throw DataTiendaOnlineException.crear(excepcion,mensajeTecnico, mensajeUsuario);
-			
-			
-		}catch(final Exception excepcion) {
-			var mensajeUsuario= " Se a presentado un problema tratando de llevar a cabo la consulta de los Tipos de indentificacion";
-			var mensajeTecnico ="Se ha presentado un problema en el metodo consultar parametros consulta en la clase tipo excepcion sql server dao, tratando de colocar los parametros de la consulta sql. ";
-			throw DataTiendaOnlineException.crear(excepcion,mensajeTecnico, mensajeUsuario);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000053);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
 		}
-	
-		
-		
-	
-		
-	
+		catch(final Exception excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000054);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
+		}
 	}
 	
-	private final void colocarParametrosConsulta (final PreparedStatement sentenciaPreparada, final List<Object>parametros) {
+	private final List<TipoIdentificacionEntity> ejecutarConsulta (final PreparedStatement sentenciaPreparada){
 		
-		try {
-			  for(int indice = 0; indice <parametros.size(); indice++) {
-				  sentenciaPreparada.setObject(indice + 1, parametros.get(indice));
-				  
-				  
-			  }
-			  
-			  
-		}catch (SQLException excepcion) {
-			var mensajeUsuario= " Se a presentado un problema tratando de llevar a cabo la consulta de los Tipos de indentificacion";
-			var mensajeTecnico ="Se ha presentado un problema en el metodo consultar parametros consulta en la clase tipo identificacion sql server dao, tratando de colocar los parametros de la consulta sql. ";
-			throw DataTiendaOnlineException.crear(excepcion,mensajeTecnico, mensajeUsuario);
-			
-		}catch(final Exception excepcion) {
-			var mensajeUsuario= " Se a presentado un problema tratando de llevar a cabo la consulta de los Tipos de indentificacion";
-			var mensajeTecnico ="Se ha presentado un problema inesperado de tipo excepcion en el metodo consultar parametros consulta en la clase tipo identificacion sql server dao, tratando de colocar los parametros de la consulta sql. ";
-			throw DataTiendaOnlineException.crear(excepcion,mensajeTecnico, mensajeUsuario);
-			
+		final var listaResultados = new ArrayList<TipoIdentificacionEntity>();
+		try(final var resultados = sentenciaPreparada.executeQuery()){
+			while (resultados.next()) {
+				var tipoIdentificacionEntity = TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("id").toString()), resultados.getString("codigo"),resultados.getString("nombre"), resultados.getBoolean("estado"));
+				
+				listaResultados.add(tipoIdentificacionEntity);
+						
+					
+			}
+		}catch( final SQLException excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000055);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
 		}
-		
-		
-	}
-	
-	
-	private final List<TipoIdentificacionEntity> ejecutarConsulta( final PreparedStatement sentenciaPreparada){
-		
-		
-		return null;
-		
-	
-		
+		catch( final Exception excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000040);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000056);
+			throw DataTiendaOnlineException.crear(excepcion,mensajeUsuario,mensajeTecnico);
+		}
+		return listaResultados;
 		
 	}
 	

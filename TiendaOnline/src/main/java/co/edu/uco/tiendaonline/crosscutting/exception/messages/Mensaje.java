@@ -4,8 +4,8 @@ import co.edu.uco.tiendaonline.crosscutting.exception.concrete.CrossCuttingTiend
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.enumerator.CategoriaMensaje;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.enumerator.TipoMensaje;
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilObjeto;
-
+import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 public class Mensaje {
 	
 	
@@ -34,8 +34,8 @@ public class Mensaje {
 	private final void setCodigo(final CodigoMensaje codigo) {
 		
 		if (UtilObjeto.esNulo(codigo)) {
-			var mensajeUsuario=CatalogoMensajes.obtenerMensaje(CodigoMensaje.M000004).getContenido();
-			var mensajeTecnico =CatalogoMensajes.obtenerMensaje(CodigoMensaje.M000003).getContenido();
+			var mensajeUsuario=CatalogoMensajes.obtenerMensaje(CodigoMensaje.M0000004).getContenido();
+			var mensajeTecnico =CatalogoMensajes.obtenerMensaje(CodigoMensaje.M0000003).getContenido();
 			throw CrossCuttingTiendaOnlineException.crear(mensajeTecnico, mensajeUsuario);
 		}
 		this.codigo = UtilObjeto.obtenerValorDefecto(codigo, null);
@@ -56,14 +56,14 @@ public class Mensaje {
 
 
 	private final void setContenido(final String contenido) {
-		this.contenido = Utiltexto.aplicarTrim(contenido);
+		this.contenido = UtilTexto.aplicarTrim(contenido);
 	}
 
 	public final CodigoMensaje getCodigo() {
 		return codigo;
 	}
 
-	public final TipoMensaje getTipo() {
+	public final TipoMensaje getTipo() { 
 		return tipo;
 	}
 
@@ -87,4 +87,4 @@ public class Mensaje {
 	
 }
 
-}
+

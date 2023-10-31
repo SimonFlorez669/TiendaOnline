@@ -32,6 +32,3 @@ public class CrossCuttingTiendaOnlineException extends TiendaOnlineException {
 	
 	
 	
-	
-
-

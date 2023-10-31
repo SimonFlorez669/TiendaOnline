@@ -1,8 +1,8 @@
 package co.edu.uco.tiendaonline.crosscutting.exception;
 
 import co.edu.uco.tiendaonline.crosscutting.exception.enumerator.LugarException;
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilObjeto;
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 
 public class TiendaOnlineException extends RuntimeException{
 

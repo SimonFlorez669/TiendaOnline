@@ -3,7 +3,7 @@ package co.edu.uco.tiendaonline.controller.support.response;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilObjeto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 
 public final class Respuesta<T>{
 	

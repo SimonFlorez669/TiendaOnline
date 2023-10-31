@@ -2,9 +2,9 @@ package co.edu.uco.tiendaonline.service.dto;
 
 import java.util.UUID;
 
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilObjeto;
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilTexto;
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilUUID;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilUUID;
 
 public final class TipoIdentificacionDTO {
 

@@ -1,4 +1,4 @@
-package co.edu.uco.tiendaonline.crosscutting.exception.util;
+package co.edu.uco.tiendaonline.crosscutting.util;
 
 public final class UtilTexto {
 	

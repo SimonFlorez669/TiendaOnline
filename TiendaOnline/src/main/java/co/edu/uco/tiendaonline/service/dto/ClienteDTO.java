@@ -3,7 +3,7 @@ package co.edu.uco.tiendaonline.service.dto;
 import java.sql.Date;
 import java.util.UUID;
 
-import co.edu.uco.tiendaonline.crosscutting.exception.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 
 
 public class ClienteDTO {
