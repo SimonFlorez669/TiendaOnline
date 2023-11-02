@@ -1,7 +1,7 @@
 package co.edu.uco.tiendaonline.service.businesslogic.validator.concrete.tipoidentificacion;
 
-import co.edu.uco.tiendaonline.service.businesslogicvalidator.Validator;
-import co.edu.uco.tiendaonline.service.domain.TipoIdentificacionDomain;
+import co.edu.uco.tiendaonline.service.businesslogic.validator.Validator;
+import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 
 public class NombreTipoIdentificacionValidator  implements Validator<TipoIdentificacionDomain>{
 

@@ -65,7 +65,7 @@ public final class SQLServerDAOFactory extends DAOFactory{
 	}
 
 	@Override
-	public TipoIdentificacionDAO obtenerTipoIdentifiacionDAO() {
+	public TipoIdentificacionDAO obtenerTipoIdentificacionDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}

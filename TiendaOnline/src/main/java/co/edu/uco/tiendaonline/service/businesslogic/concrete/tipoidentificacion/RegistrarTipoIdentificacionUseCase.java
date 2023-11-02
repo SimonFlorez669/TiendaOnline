@@ -4,15 +4,20 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import co.edu.uco.TiendaOnline.service.businesslogic.concrete.tipoidentificacion.DAOFactory;
-import co.edu.uco.TiendaOnline.service.businesslogic.concrete.tipoidentificacion.TipoIdentificacionDAO;
-import co.edu.uco.TiendaOnline.service.businesslogic.concrete.tipoidentificacion.TipoIdentificacionDomain;
-import co.edu.uco.TiendaOnline.service.businesslogic.concrete.tipoidentificacion.TipoIdentificacionEntity;
+import co.edu.uco.spa.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.CatalogoMensajes;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
+import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
 import co.edu.uco.tiendaonline.service.businesslogic.UseCase;
+import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
+import co.edu.uco.tiendaonline.service.mapper.entity.concrete.TipoIdentificacionEntityMapper;
+
+
+
+
 
 public class RegistrarTipoIdentificacionUseCase  implements UseCase <TipoIdentificacionDomain>{
 
@@ -149,10 +154,4 @@ public class RegistrarTipoIdentificacionUseCase  implements UseCase <TipoIdentif
 	    throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 	}
 
-	@Override
-	public void execute(
-			co.edu.uco.tiendaonline.service.businesslogic.concrete.tipoidentificacion.TipoIdentificacionDomain domain) {
-		// TODO Auto-generated method stub
-		
-	}
 }

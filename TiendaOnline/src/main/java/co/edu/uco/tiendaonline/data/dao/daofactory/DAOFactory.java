@@ -52,18 +52,15 @@ public abstract void cancelarTransaccion();
 
 public abstract ClienteDAO obtenerClienteDAO();
 
-public abstract TipoIdentificacionDAO obtenerTipoIdentifiacionDAO();
+public abstract TipoIdentificacionDAO obtenerTipoIdentificacionDAO();
 
 
 
 
 
-public TipoIdentificacionDAO ObtenerTipoIdentificacionDAO() {
-	// TODO Auto-generated method stub
-	return null;
 }
 
 
 
-}
+
 

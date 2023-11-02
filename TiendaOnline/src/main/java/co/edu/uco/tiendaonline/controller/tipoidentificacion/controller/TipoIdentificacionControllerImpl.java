@@ -1,8 +1,10 @@
-package co.edu.uco.tiendaonline.controller.tipoidentificacion;
+package co.edu.uco.tiendaonline.controller.tipoidentificacion.controller;
 
 import java.lang.annotation.Retention;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,10 +24,16 @@ import co.edu.uco.tiendaonline.service.facade.concrete.tipoidentificacion.Regist
 
 @RestController
 @RequestMapping("/api/v1/tipoindetificacion")
-public class TipoIdentificacionController {
+public class TipoIdentificacionControllerImpl implements TipoIdentificacionController {
+	
+	
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(TipoIdentificacionControllerImpl.class);
+	
 	
 	@GetMapping("/dummy")
 	public TipoIdentificacionDTO obtenerdummy() {
+		LOGGER.info(" el dummi de tipo identificacion se genero exitosamente");
 		return TipoIdentificacionDTO.crear();
 	}
 	
@@ -54,21 +62,17 @@ public class TipoIdentificacionController {
 			facade.execute(dto);
 			codigoHttp = HttpStatus.OK;
 			respuesta.getMensajes().add("El tipo de identificacio fue registrado exitosamente");
-			
+			LOGGER.info("el tipo de idenficiacion fue registrado exitosamente");			
 		} catch (final TiendaOnlineException exception) {
 			
 			respuesta.getMensajes().add(exception.getMensajeUsuario());
-			System.err.print(exception.getMensajeTecnico());
-			System.err.print(exception.getLugar());
-			exception.getExceptionRaiz().printStackTrace();
-			
-			//TODO : HACER LOGGIN DE LA EXCEPCION PRESENTADA
+			LOGGER.error(exception.getMensajeTecnico(), exception.getExceptionRaiz());
 			
 		}catch (Exception excepcion) {
-			
+			codigoHttp= HttpStatus.INTERNAL_SERVER_ERROR;
 			respuesta.getMensajes().add(" se ha presentado un problema inesperado tratado de registrar el tipo de identificacion deseado");
-			//TODO : HACER LOGGIN DE LA EXCEPCION PRESENTADA
-			
+			LOGGER.error(
+					"se ha presentado un problema inesperado tratado de registrar el tipo de identificacion deseado", excepcion);
 		}
 		
 		return new ResponseEntity<>(respuesta , codigoHttp);
@@ -78,7 +82,7 @@ public class TipoIdentificacionController {
 	public TipoIdentificacionDTO modificar(@PathVariable("id") UUID id, @RequestBody  TipoIdentificacionDTO dto) {
 		dto.setId(id);
 		return dto;
-		
+	
 	}
 	
 	

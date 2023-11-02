@@ -20,6 +20,9 @@ public interface TipoIdentificacionDAO {
 	List<TipoIdentificacionEntity> consultar(TipoIdentificacionEntity entity);
 
 	
+	
+	
+	
 }
 
 

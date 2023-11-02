@@ -5,7 +5,7 @@ public interface DTOMapper<T, D> {
 	
 	D toDomain( T dto);
 	
-	T toDto(D domain);
+	T toDTO(D domain);
 	
 	
 
