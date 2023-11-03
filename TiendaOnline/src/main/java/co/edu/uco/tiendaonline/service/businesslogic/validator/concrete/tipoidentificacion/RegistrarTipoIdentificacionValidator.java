@@ -1,6 +1,7 @@
 package co.edu.uco.tiendaonline.service.businesslogic.validator.concrete.tipoidentificacion;
 
 import co.edu.uco.tiendaonline.service.businesslogic.validator.Validator;
+import co.edu.uco.tiendaonline.service.domain.tipodentificacion.rules.CodigoTipoIdentificacionValidatorRule;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 
 public final class RegistrarTipoIdentificacionValidator implements Validator<TipoIdentificacionDomain> {
@@ -22,11 +23,11 @@ public final class RegistrarTipoIdentificacionValidator implements Validator<Tip
 	
 	@Override
 	public final void execute(final TipoIdentificacionDomain data) {
-		CodigoTipoIdentificacionValidationRule.ejecutarValidacion(data.getCodigo());
+		CodigoTipoIdentificacionValidatorRule.ejecutarValidacion(data.getCodigo());
 		NombreTipoIdentificacionValidator.ejecutarValidacion(data.getNombre());	
 	}
 
-	
+
 	
 	
 	

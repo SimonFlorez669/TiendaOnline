@@ -1,33 +1,72 @@
 package co.edu.uco.tiendaonline.service.domain.tipodentificacion.rules;
 
+import java.util.UUID;
+
+import co.edu.uco.spa.crosscutting.excepcion.messages.CatalogoMensajes;
+import co.edu.uco.spa.crosscutting.excepcion.messages.enumerator.CodigoMensaje;
+import co.edu.uco.spa.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
-import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
-import co.edu.uco.tiendaonline.service.businesslogic.validator.Validator;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 import co.edu.uco.tiendaonline.service.domain.ValidationRule;
-import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 
-public class TipoIdentificacionValidationRule implements ValidationRule<TipoIdentificacionDomain> {
+public class TipoIdentificacionValidationRule implements ValidationRule<String> {
 	
-	
-	
-
-	
-	private static final Validator<TipoIdentificacionDomain> instancia = new ModificarTipoIdentificacionValidator();
-
+	private static final ValidationRule<String> instancia = new TipoIdentificacionValidationRule();
 	private TipoIdentificacionValidationRule() {
 		super();
 	}
 	
-	public static final void ejecutarValidacion(final TipoIdentificacionDomain dato) {
-		instancia.execute(dato);
+	public static final void ejecutarValidacion(final TipoIdentificacionDomain data) {
+		instancia.validar(data);
+	}
+	
+	@Override
+	public void validar(String dato) {
+		validarLongitud(dato);
+		validarObligatoriedad(dato);
+		validarFormato(dato);
 		
 	}
-	@Override
-	public final void validar (final TipoIdentificacionDomain dato) {
-		if (UtilObjeto.esNulo(dato)) {
-			var mensajeUsuario= " No es posible llevar a cablo la operacion deseada con el Tipo de Identificacion";
+	
+	
+	
+	
+	
+	
+	private final void validarLongitud(final String dato) {
+		if(UtilTexto.longitudMaximaValida(dato,50)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000073);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
+	private final void validarObligatoriedad(final String dato) {
+		if(UtilTexto.estaVacio(dato)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000074);
+			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+		}
+	}
+	private final void validarFormato(final String dato) {
+		if(!UtilTexto.contieneSoloLetras(dato)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenido(CodigoMensaje.M0000075);
+			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+		}
+	}
+
+	@Override
+	public void validar(TipoIdentificacionDomain data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void validar(UUID dato) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+	
+
 	
 }

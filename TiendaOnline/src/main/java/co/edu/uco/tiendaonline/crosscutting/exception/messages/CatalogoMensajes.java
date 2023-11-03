@@ -96,9 +96,9 @@ public class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000070, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,"se ha presentado un problema en el metodo toDomain de la Clase TipoIdentificacion. No es Posible mapear un tipo de identificacion dominio a partir de una entidad de tipo identificacion entity nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000071, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,"se ha presentado un problema en el metodo toEntity de la Clase TipoIdentificacion. No es Posible mapear un tipo de identificacion entity a partir de una entidad de tipo identificacion domain nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000072, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,"se ha presentado un problema en el metodo toDomain de la Clase Cliente. No es Posible mapear un Cliente dominio a partir de una entidad de Cliente entity nula"));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000073, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,""));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000074, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,""));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000075, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,""));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000073, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,"La longitud del codigo del tipo de identificacion no es valida. la longitud Maxima son 50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000074, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,"La longitud del codigo del tipo de identificacion es un dato de tipo obligatorio..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000075, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,"La longitud del codigo del tipo de identificacion solo puede contener letras..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000076, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,""));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000077, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,""));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000078, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,""));

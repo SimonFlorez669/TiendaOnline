@@ -1,4 +1,4 @@
-package co.edu.uco.tiendaonline.service.dto;
+package co.edu.uco.tiendaonline.service.dto.support;
 
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 

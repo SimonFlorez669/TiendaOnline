@@ -12,6 +12,10 @@ public class NombreTipoIdentificacionValidator  implements Validator<TipoIdentif
 	}
 
 	
+		
+	
+
+	
 	
 	
 	

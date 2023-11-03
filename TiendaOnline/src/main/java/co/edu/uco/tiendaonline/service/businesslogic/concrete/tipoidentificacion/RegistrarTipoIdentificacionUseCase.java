@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import co.edu.uco.spa.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.CatalogoMensajes;
 import co.edu.uco.tiendaonline.crosscutting.exception.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
 import co.edu.uco.tiendaonline.service.businesslogic.UseCase;
